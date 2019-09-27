@@ -1,12 +1,26 @@
-const Ship = ((length) => ({
+const Ship = ((length, position) => ({
   length,
-  position: [],
-  healthPoints: 0,
+  type: () => {
+    switch (length) {
+      case 1:
+        return 'Submarine';
+      case 2:
+        return 'Destroyer';
+      case 3:
+        return 'Cruiser';
+      case 4:
+        return 'Battelship';
+      default:
+        return false;
+    }
+  },
+  position,
+  healthPoints: length,
   hit() {
-    this.isSunk() ? null : this.healthPoints += 1;
+    this.healthPoints -= this.isSunk() ? 0 : 1;
   },
   isSunk() {
-    return this.hits >= this.length;
+    return this.healthPoints === 0;
   },
 }));
 export default Ship;
