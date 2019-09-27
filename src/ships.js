@@ -16,8 +16,10 @@ const Ship = ((length, position) => ({
   },
   position,
   healthPoints: length,
-  hit() {
-    this.healthPoints -= this.isSunk() ? 0 : 1;
+  hit(coord) {
+    if (position.includes(coord)) {
+      this.healthPoints -= this.isSunk() ? 0 : 1;
+    }
   },
   isSunk() {
     return this.healthPoints === 0;

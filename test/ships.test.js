@@ -1,4 +1,5 @@
 import Ships from '../src/ships';
+import Ship from '../src/ships';
 
 describe('Testing the Creation of a ship', () => {
   it('builds a ship with a valid length', () => {
@@ -37,14 +38,14 @@ describe('Testing ship during gameplay', () => {
   it('ship health points reducing after getting hit', () => {
     const ship = Ships(4, ['A1', 'A2', 'A3', 'A4']);
     const initHealth = ship.healthPoints;
-    ship.hit();
+    ship.hit('A1');
     expect(initHealth).toBe(ship.healthPoints + 1);
   });
 
   it('ship sunks after getting hit "length" times', () => {
-    const ship = Ships(4);
-    [0, 0, 0, 0].forEach(() => ship.hit());
+    const ship = Ships(4, ['A1', 'A2', 'A3', 'A4']);
+    ship.position.forEach((coord) => ship.hit(coord));
     expect(ship.healthPoints).toBe(0);
     expect(ship.isSunk()).toBeTruthy();
   });
-})
+});
