@@ -1,6 +1,8 @@
 import GameBoard from '../src/gameBoard';
 import Ship from '../src/ships';
-import { createSocket } from 'dgram';
+import {
+  createSocket
+} from 'dgram';
 
 describe('testing the gameboard', () => {
   it('creates a 10X10 grid', () => {
@@ -13,20 +15,19 @@ describe('testing the gameboard', () => {
   it('places a battelship on the grid', () => {
     const ships = [Ship(4)];
     const game = GameBoard(ships);
-    game.placeShip(ships[0], game.board);
+    game.placeShip(ships);
     const [x, y] = [parseInt(ships[0].position[0][0]), parseInt(ships[0].position[0][1])];
     expect(game.board[x][y].state).toBe('taken');
   });
 
   it('places a array of ships on the grid', () => {
     const shipsArray = [Ship(4), Ship(3), Ship(3), Ship(2), Ship(2),
-      Ship(2), Ship(1), Ship(1), Ship(1), Ship(1)];
+      Ship(2), Ship(1), Ship(1), Ship(1), Ship(1)
+    ];
     const game = GameBoard(shipsArray);
-    game.placeShip(game.ship, game.board)
+    game.placeShip();
     expect(game.board).toBe(0);
   })
 
 
 })
-
-
