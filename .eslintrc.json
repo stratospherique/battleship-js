@@ -15,6 +15,8 @@
         "sourceType": "module"
     },
     "rules": {
-      "radix": "off"
+      "radix": "off",
+      "no-lone-blocks":"off",
+      "no-plusplus":"off"
     }
 }
