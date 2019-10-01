@@ -1,6 +1,11 @@
 import GameBoard from '../src/gameBoard';
+import Ship from '../src/ships';
 
-it.only('test a gameboard', () => {
-  const board = GameBoard();
-  console.log(board.grid);
-});
+describe('testing the gameboard', () => {
+  it.only('creates a 10X10 grid', () => {
+    const ships = []
+    const game = GameBoard();
+    expect(game.board.length).toBe(10);
+    expect(game.board[0].length).toBe(10);
+  });
+})
