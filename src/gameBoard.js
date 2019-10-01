@@ -1,3 +1,5 @@
+import Ship from "./ships";
+
 const gridT = ['ABCDEFGHIJ', '0123456789'];
 
 const grid = new Array(10);
@@ -35,7 +37,7 @@ const GameBoard = (ships) => ({
   },
   placeShip: (ship, board) => {
     let [randomH, randomV] = 0;
-    const coord = '';
+    let coord = '';
     const facing = ['horizontal', 'vertical'];
     let dir = 0;
     do {
@@ -60,7 +62,19 @@ const GameBoard = (ships) => ({
     ships.forEach((ship) => {
       placeShip(ship, board);
     });
-  }
+  },
+  recieveAttack: (coord1, coord2) => {
+    let bomb = grid[coord1][coord2];
+    let position = bomb.pos;
+    Ship.hit(position);
+    switch (bomb) {
+      case bomb.state === 'empty':
+        bomb.state = 'miss'
+        break
+      case bomb.state === 'taken':
+        bomb.state = 'hit'
+        break
+    }
 });
 
 export default GameBoard;
