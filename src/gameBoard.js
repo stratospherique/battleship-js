@@ -36,7 +36,7 @@ const GameBoard = (ships) => ({
     return true;
   },
   placeShip: (ship, board) => {
-    let [randomH, randomV] = 0;
+    let [randomH, randomV] = [0, 0];
     let coord = '';
     const facing = ['horizontal', 'vertical'];
     let dir = 0;
@@ -60,21 +60,20 @@ const GameBoard = (ships) => ({
   },
   placeAllShips: (ships, board) => {
     ships.forEach((ship) => {
-      placeShip(ship, board);
+      placeShip(ship);
     });
   },
-  recieveAttack: (coord1, coord2) => {
-    let bomb = grid[coord1][coord2];
+  recieveAttack: (coord1, coord2, ships) => {
+    let bomb = board[coord1][coord2];
     let position = bomb.pos;
-    Ship.hit(position);
-    switch (bomb) {
-      case bomb.state === 'empty':
-        bomb.state = 'miss'
-        break
-      case bomb.state === 'taken':
-        bomb.state = 'hit'
-        break
+    const ship = ships.filter((e) => e.position.includes(position))[0];
+    if (ship) {
+      ship.hit();
+      bomb.state = 'hit';
+    } else {
+      bomb.state = 'miss';
     }
+  }
 });
 
 export default GameBoard;
