@@ -10,11 +10,16 @@ describe('testing the gameboard', () => {
   });
 
   it('places a battelship on the grid', () => {
-    const ships = [Ship(1)];
-    ships[0].position = ['A1'];
+    const ships = [Ship(4)];
     const game = GameBoard(ships);
     game.placeShip(ships[0], game.board);
-    game.recieveAttack(0, 0, ships, game.board);
-    expect(game.board).toBe(0);
+    const [x, y] = [parseInt(ships[0].position[0][0]), parseInt(ships[0].position[0][1])];
+    expect(game.board[x][y].state).toBe('taken');
+  });
+
+  it('places a array of ships on the grid', () => {
+
   })
+
+
 })

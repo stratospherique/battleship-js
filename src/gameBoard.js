@@ -1,6 +1,6 @@
 import Ship from "./ships";
 
-const gridT = ['ABCDEFGHIJ', '0123456789'];
+const gridT = ['0123456789', '0123456789'];
 
 const grid = new Array(10);
 gridT[0].split('').forEach((item, i) => {
@@ -36,7 +36,7 @@ const validPosition = (ship, coord, facing, board) => {
 
 const GameBoard = (ships) => ({
   board: grid,
-  placeShip: (ship, board) => {    
+  placeShip: (ship, board) => {
     let [randomH, randomV] = [0, 0];
     let coord = '';
     const facing = ['horizontal', 'vertical'];
@@ -47,24 +47,22 @@ const GameBoard = (ships) => ({
       coord = board[randomV][randomH];
       dir = Math.round(Math.random() * 1);
     } while (!validPosition(ship, coord, facing[dir], board));
-    const pos = [];
     if (facing[dir] === 'horizontal') {
       for (let i = randomH; i <= randomH + ship.length; i++) {
-        grid[randomV][i].state = 'taken';
-        pos.push(grid[randomV][i].pos);
+        board[randomV][i].state = 'taken';
+        ship.position.push(board[randomV][i].pos);
       }
     }
     if (facing[dir] === 'vertical') {
       for (let i = randomV; i <= randomV + ship.length; i++) {
-        grid[i][randomH].state = 'taken';
-        pos.push(grid[i][randomH].pos);
+        board[i][randomH].state = 'taken';
+        ship.position.push(board[i][randomH].pos);
       }
     }
-    Ship.position = pos;
   },
   placeAllShips: (ships, board) => {
     ships.forEach((ship) => {
-      placeShip(ship);
+      placeShip(ship, board);
     });
   },
   recieveAttack: (coord1, coord2, ships, board) => {
