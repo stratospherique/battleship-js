@@ -36,7 +36,7 @@ const validPosition = (ship, coord, facing, board) => {
 
 const GameBoard = (ships) => ({
   board: grid,
-  placeShip: (ship, board) => {
+  placeShip: ships.forEach((ship, board) => {
     let [randomH, randomV] = [0, 0];
     let coord = '';
     const facing = ['horizontal', 'vertical'];
@@ -59,12 +59,12 @@ const GameBoard = (ships) => ({
         ship.position.push(board[i][randomH].pos);
       }
     }
-  },
-  placeAllShips: (ships, board) => {
-    ships.forEach((ship) => {
-      placeShip(ship, board);
-    });
-  },
+  }),
+  // placeAllShips: (board) => {
+  //   ships.forEach((ship) => {
+  //     this.placeShip(ship, board);
+  //   });
+  // },
   recieveAttack: (coord1, coord2, ships, board) => {
     let bomb = board[coord1][coord2];
     let position = bomb.pos;
@@ -75,7 +75,7 @@ const GameBoard = (ships) => ({
     } else {
       bomb.state = 'miss';
     }
-  }
+  },
 });
 
 export default GameBoard;
