@@ -10,10 +10,11 @@ describe('testing the gameboard', () => {
   });
 
   it('places a battelship on the grid', () => {
-    const ships = [Ship(1, ["A1"])]
+    const ships = [Ship(1)];
+    ships[0].position = ['A1'];
     const game = GameBoard(ships);
     game.placeShip(ships[0], game.board);
-    game.recieveAttack(0, 0, ships);
+    game.recieveAttack(0, 0, ships, game.board);
     expect(game.board).toBe(0);
   })
 })

@@ -1,4 +1,4 @@
-const Ship = ((length, position) => ({
+const Ship = ((length) => ({
   length,
   type: () => {
     switch (length) {
@@ -14,10 +14,10 @@ const Ship = ((length, position) => ({
         return false;
     }
   },
-  position,
+  position: [],
   healthPoints: length,
   hit(coord) {
-    if (position.includes(coord)) {
+    if (this.position.includes(coord)) {
       this.healthPoints -= this.isSunk() ? 0 : 1;
     }
   },
