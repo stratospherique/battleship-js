@@ -18,17 +18,17 @@ gridT[0].split('').forEach((item, i) => {
 const GameBoard = (ships) => {
   const board = grid;
   const validPosition = (ship, coord, facing) => {
-    const cordNum = parseInt(coord.pos[1]);
+    const cordH = parseInt(coord.pos[1]);
     const cordV = parseInt(coord.pos[0]);
     if (facing === 'horizontal') {
-      for (let j = cordNum; j <= cordNum + ship.length; j++) {
-        if (board[cordV][j].state !== 'empty') {
+      for (let j = cordH; j <= cordH + ship.length - 1; j++) {
+        if (!board[cordV][j] || board[cordV][j].state !== 'empty') {
           return false;
         }
       }
     } else {
-      for (let i = cordV; i <= cordV + ship.length; i++) {
-        if (board[i][cordNum].state !== 'empty') {
+      for (let i = cordV; i <= cordV + ship.length - 1; i++) {
+        if (!board[i][cordH] || board[i][cordH].state !== 'empty') {
           return false;
         }
       }
@@ -53,13 +53,13 @@ const GameBoard = (ships) => {
           dir = Math.round(Math.random() * 1);
         } while (!validPosition(ship, coord, facing[dir]));
         if (facing[dir] === 'horizontal') {
-          for (let i = randomH; i <= randomH + ship.length; i++) {
+          for (let i = randomH; i <= randomH + ship.length - 1; i++) {
             board[randomV][i].state = 'taken';
             ship.position.push(board[randomV][i].pos);
           }
         }
         if (facing[dir] === 'vertical') {
-          for (let i = randomV; i <= randomV + ship.length; i++) {
+          for (let i = randomV; i <= randomV + ship.length - 1; i++) {
             board[i][randomH].state = 'taken';
             ship.position.push(board[i][randomH].pos);
           }
