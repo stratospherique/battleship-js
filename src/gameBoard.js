@@ -9,36 +9,38 @@ gridT[0].split('').forEach((item, i) => {
     grid[i].push({
       pos: `${item}${suItem}`,
       // status: taken/empty/hit/miss
-      state: 'empty'
+      state: 'empty',
     });
   });
 });
 
-const validPosition = (ship, coord, facing, board) => {
-  const cordNum = parseInt(coord.pos[1]);
-  const cordV = parseInt(coord.pos[0]);
-  if (facing === 'horizontal') {
-    for (let j = cordNum; j <= cordNum + ship.length; j++) {
-      if (board[cordV][j].state !== 'empty') {
-        return false;
-      }
-    }
-  } else {
-    for (let i = cordV; i <= cordV + ship.length; i++) {
-      if (board[i][cordNum].state !== 'empty') {
-        return false;
-      }
-    }
-  }
-  return true;
-};
 
 const GameBoard = (ships) => {
   const board = grid;
+  const validPosition = (ship, coord, facing) => {
+    const cordNum = parseInt(coord.pos[1]);
+    const cordV = parseInt(coord.pos[0]);
+    if (facing === 'horizontal') {
+      for (let j = cordNum; j <= cordNum + ship.length; j++) {
+        if (board[cordV][j].state !== 'empty') {
+          return false;
+        }
+      }
+    } else {
+      for (let i = cordV; i <= cordV + ship.length; i++) {
+        if (board[i][cordNum].state !== 'empty') {
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+
   return {
+    validPosition,
     board,
     placeShip: () => {
-      // const board = brd;
+      //const board = brd;
       ships.map((ship) => {
         let [randomH, randomV] = [0, 0];
         let coord = '';
@@ -49,7 +51,7 @@ const GameBoard = (ships) => {
           randomV = Math.round(Math.random() * 9);
           coord = board[randomV][randomH];
           dir = Math.round(Math.random() * 1);
-        } while (!validPosition(ship, coord, facing[dir], board));
+        } while (!validPosition(ship, coord, facing[dir]));
         if (facing[dir] === 'horizontal') {
           for (let i = randomH; i <= randomH + ship.length; i++) {
             board[randomV][i].state = 'taken';
@@ -66,8 +68,8 @@ const GameBoard = (ships) => {
       });
     },
     recieveAttack: (coord1, coord2, ships) => {
-      let bomb = board[coord1][coord2];
-      let position = bomb.pos;
+      const bomb = board[coord1][coord2];
+      const position = bomb.pos;
       const ship = ships.filter((e) => e.position.includes(position))[0];
       if (ship) {
         ship.hit();
