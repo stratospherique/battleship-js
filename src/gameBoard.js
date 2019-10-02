@@ -1,4 +1,3 @@
-import Ship from "./ships";
 
 const gridT = ['0123456789', '0123456789'];
 
@@ -66,7 +65,7 @@ const GameBoard = (ships) => {
         return ship;
       });
     },
-    recieveAttack: (coord1, coord2, ships) => {
+    recieveAttack: (coord1, coord2) => {
       const bomb = board[coord1][coord2];
       const position = bomb.pos;
       const ship = ships.filter((e) => e.position.includes(position))[0];
@@ -77,7 +76,7 @@ const GameBoard = (ships) => {
         bomb.state = 'miss';
       }
     },
-  }
+  };
 };
 
 export default GameBoard;

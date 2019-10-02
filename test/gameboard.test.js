@@ -9,19 +9,21 @@ describe('testing the gameboard', () => {
     expect(game.board.length).toBe(10);
   });
 
-  it('places a battelship on the grid', () => {
-    const ships = [Ship(6)];
-    const game = GameBoard(ships);
-    game.placeShip();
-    const [x, y] = [parseInt(ships[0].position[0][0]), parseInt(ships[0].position[0][1])];
-    //expect(game.board[x][y].state).toBe('taken');
-    expect(game.board).toBe('taken');
-  });
-
   it('places a array of ships on the grid', () => {
-    const shipsArray = [Ship(4), Ship(3), Ship(3), Ship(3)];
-    const game = Object.assign({}, GameBoard(shipsArray));
+    const shipsArray = [Ship(4), Ship(3), Ship(3), Ship(2), Ship(2), Ship(2), Ship(1), Ship(1), Ship(1), Ship(1)];
+    const game = GameBoard(shipsArray);
     game.placeShip();
-    expect(game.board).toBe(0);
+    const taken = (board) => {
+      let num = 0;
+      board.forEach((row) => {
+        row.forEach((column) => {
+          if (column.state === 'taken') {
+            num += 1;
+          }
+        });
+      });
+      return num;
+    };
+    expect(taken(game.board)).toBe(20);
   });
 });
