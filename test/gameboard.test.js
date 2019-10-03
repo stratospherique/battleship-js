@@ -1,12 +1,11 @@
 import GameBoard from '../src/gameBoard';
 import Ship from '../src/ships';
 
-let game = null;
-let realGame = null;
-const smShipArray = [Ship(1)];
-const realShipArray = [Ship(1), Ship(4), Ship(2), Ship(3)];
-
 describe('testing the gameboard', () => {
+  let game;
+  let realGame;
+  const smShipArray = [Ship(1)];
+  const realShipArray = [Ship(1), Ship(4), Ship(2), Ship(3)];
   beforeEach(() => {
     game = GameBoard(smShipArray);
     realGame = GameBoard(realShipArray);
@@ -40,14 +39,12 @@ describe('testing the gameboard', () => {
   });
 
   it('report a play as a hit if a ship is targeted', () => {
-    game.placeShip();
     const [x, y] = smShipArray[0].position[0].split('').map((e) => parseInt(e));
     game.recieveAttack(x, y);
     expect(game.board[x][y].state).toBe('hit');
   });
 
   it('returns true if all the ships are sunken', () => {
-    realGame.placeShip();
     const allCordinates = [];
     realShipArray.forEach((ship) => {
       ship.position.forEach((coord) => {
@@ -57,7 +54,6 @@ describe('testing the gameboard', () => {
     allCordinates.forEach((coord) => {
       realGame.recieveAttack(coord[0], coord[1]);
     });
-    // expect(realGame.gameOver()).toBeTruthy();
-    expect(allCordinates).toBe(4);
+    expect(realGame.gameOver()).toBeTruthy();   
   });
 });

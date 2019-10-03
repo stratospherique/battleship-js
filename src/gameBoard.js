@@ -1,5 +1,4 @@
 const gridT = ['0123456789', '0123456789'];
-
 const grid = new Array(10);
 gridT[0].split('').forEach((item, i) => {
   grid[i] = [];
@@ -15,6 +14,7 @@ gridT[0].split('').forEach((item, i) => {
 
 const GameBoard = (ships) => {
   const board = grid;
+  const sunken = [];
   const validPosition = (ship, coord, facing) => {
     const cordH = parseInt(coord.pos[1]);
     const cordV = parseInt(coord.pos[0]);
@@ -32,9 +32,7 @@ const GameBoard = (ships) => {
       }
     }
     return true;
-  };
-
-  const sunken = [];
+  };  
 
   return {
     validPosition,
