@@ -1,4 +1,3 @@
-
 const gridT = ['0123456789', '0123456789'];
 
 const grid = new Array(10);
@@ -72,13 +71,13 @@ const GameBoard = (ships) => {
       const position = bomb.pos;
       const ship = ships.filter((e) => e.position.includes(position))[0];
       if (ship) {
-        ship.hit();
-        bomb.state = 'hit';
+        ship.hit(position);
+        board[coord1][coord2].state = 'hit';
         if (ship.isSunk()) {
-          sunken.push(ship.type);
+          sunken.push(ship.type());
         }
       } else {
-        bomb.state = 'miss';
+        board[coord1][coord2].state = 'miss';
       }
     },
     gameOver: () => {
