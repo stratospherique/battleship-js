@@ -54,6 +54,6 @@ describe('testing the gameboard', () => {
     allCordinates.forEach((coord) => {
       realGame.recieveAttack(coord[0], coord[1]);
     });
-    expect(realGame.gameOver()).toBeTruthy();   
+    expect(realGame.gameOver()).toBeTruthy();
   });
 });
