@@ -35,6 +35,8 @@ const GameBoard = (ships) => {
     return true;
   };
 
+  const sunken = [];
+
   return {
     validPosition,
     board,
@@ -72,9 +74,18 @@ const GameBoard = (ships) => {
       if (ship) {
         ship.hit();
         bomb.state = 'hit';
+        if (ship.isSunk()) {
+          sunken.push(ship.type);
+        }
       } else {
         bomb.state = 'miss';
       }
+    },
+    gameOver: () => {
+      if (sunken.length === ships.length) {
+        return true;
+      }
+      return false;
     },
   };
 };
