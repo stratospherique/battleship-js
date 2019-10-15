@@ -13,8 +13,14 @@ describe('testing the creation of players', () => {
     expect(player.getType()).toBe('bot');
   });
 
-  it.only('return a random coordinates if bot', () => {
+  it('return a random coordinates if bot', () => {
     const player = Player('Alex', 'bot');
-    expect(player.play()).toEqual(4);
+    expect(player.play().length).toEqual(2);
   });
-})
+
+  it('returns the specific coordinates when the player moves', () => {
+    const cell = { position: '35' };
+    const player = Player('jorge', 'human');
+    expect(player.play(cell)).toEqual([3, 5]);
+  });
+});

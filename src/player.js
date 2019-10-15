@@ -17,10 +17,10 @@ const Player = (nam, typ) => {
         moves.push([randomV, randomH]);
         return [randomV, randomH];
       }
-      return parseInt(cell.position.split(''));
+      const ary = cell.position.split('');
+      return ary.map((ele) => parseInt(ele));
     },
-  }
-
-}
+  };
+};
 
 export default Player;
