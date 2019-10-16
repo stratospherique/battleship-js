@@ -1,27 +1,28 @@
 const computerBoard = (() => {
   const comBoard = document.querySelector('.board__computer');
   const playerBoard = document.querySelector('.board__player');
-  const buildCompBoard = (board) => {
-    const html = board.map((line) => {
-      const row = line.map((cell, ind) => {
-        let state;
+  const buildCompBoard = (game) => {
+    const html = game.board.map((line, i) => {
+      const row = line.map((cell, j) => {
+        let mark;
         switch (cell.state) {
           case 'hit':
-            state = 'X';
+            mark = 'X';
             break;
           case 'miss':
-            state = '||';
+            mark = '||';
             break;
           default:
-            state = ind;
+            mark = j;
             break;
         }
         return `
-        <div class="col" id="${ind}">${state}</div>
-        `}).join('');
+        <div class="col" id="${j}" onclick="${() => { game.recieveAttack(i, j) }}">${mark}</div>
+        `;
+      }).join('');
       return (
         `
-          <div class="row">${row}</div>
+        <div class="row" > ${row}</div>
         `
       );
     }).join('');
@@ -44,19 +45,19 @@ const computerBoard = (() => {
             break;
         }
         return `
-        <div class="col ${cell.state}" id="${ind}">${state}</div>
+        <div class= "col ${cell.state}" id = "${ind}" > ${state}</div>
         `;
       }).join('');
       return (
         `
-          <div class="row">${row}</div>
+        <div class= "row" > ${ row}</div>
         `
       );
     }).join('');
     playerBoard.innerHTML = html;
   };
   return {
-    buildCompBoard, buildPlayerBoard,
+    buildCompBoard, buildPlayerBoard, comBoard
   };
 })();
 export default computerBoard;
