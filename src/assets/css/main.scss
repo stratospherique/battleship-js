@@ -23,3 +23,12 @@
     background-color: #085c83;
   }
 }
+
+.hit {
+  background-color: #ff6361;
+  &:hover{
+    transform: none;
+    cursor: auto;
+    background-color: #ff6361;
+  }
+}
