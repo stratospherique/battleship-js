@@ -1,24 +1,35 @@
-const playerBoard = (() => {
-  const playerBoard = document.querySelector('.player__board');
-  //const botBoard = document.querySelector('.bot__board');
-  const buildBoard = (board) => {
+const computerBoard = (() => {
+  const comBoard = document.querySelector('.board__computer');
+  const playerBoard = document.querySelector('.board__player');
+  const buildCompBoard = (board) => {
     const html = board.map((line) => {
-      const row = line.map((cell, ind) => {
-        return
+      const row = line.map((cell, ind) => (
+        `<div class="col ${cell.state}" id="${ind}">${ind}</div>`
+      )).join('');
+      return (
         `
-        <div class="col" id="${ind}">${ind}</div>
+          <div class="row">${row}</div>
         `
-      }).join('');
-      return
-      `
-      <div class="row">${row}</div>
-      `
+      );
+    }).join('');
+    comBoard.innerHTML = html;
+  };
+
+  const buildPlayerBoard = (board) => {
+    const html = board.map((line) => {
+      const row = line.map((cell, ind) => (
+        `<div class="col ${cell.state}" id="${ind}">${ind}</div>`
+      )).join('');
+      return (
+        `
+          <div class="row">${row}</div>
+        `
+      );
     }).join('');
     playerBoard.innerHTML = html;
-  }
+  };
   return {
-    buildBoard
-  }
+    buildCompBoard, buildPlayerBoard,
+  };
 })();
-export default playerBoard;
-
+export default computerBoard;
