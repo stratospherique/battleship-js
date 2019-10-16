@@ -30,14 +30,7 @@
     }
   }
   
-  .hit {
-    background-color: #ff6361;
-    &:hover{
-      transform: none;
-      cursor: auto;
-      background-color: #ff6361;
-    }
-  }
+  
   &__player{
     .col{
       background-color: #bc5090;
@@ -45,16 +38,34 @@
         background-color: #fd87ce;
       }
     }
-    .taken {
-      background-color: greenyellow;
-      &:hover{
-        transform: none;
-        cursor: auto;
-        background-color: greenyellow;
-      }    
-    }
+    
   }
 }
 
 
+.taken {
+  background-color: greenyellow !important;
+  &:hover{
+    transform: none;
+    cursor: auto;
+    background-color: greenyellow;
+  }    
+}
 
+.hit {
+  background-color: #ff6361 !important;
+  &:hover{
+    transform: none;
+    cursor: auto;
+    background-color: #ff6361;
+  }
+}
+
+.miss {
+  background-color: #636968 !important;
+  &:hover{
+    transform: none;
+    cursor: auto;
+    background-color: #d1afae;
+  }
+}
