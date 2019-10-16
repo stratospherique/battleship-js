@@ -1,4 +1,6 @@
 import GameBoard from './gameBoard';
 
-const playerBoard = document.querySelector('.player-board');
-GameBoard.board.map();
+const playerBoard = document.querySelector('.player__board');
+
+export default playerBoard;
+
