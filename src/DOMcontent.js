@@ -1,9 +1,11 @@
 const computerBoard = (() => {
   const comBoard = document.querySelector('.board__computer');
   const playerBoard = document.querySelector('.board__player');
+  let j = -1;
   const buildCompBoard = (game) => {
     const html = game.board.map((line, i) => {
-      const row = line.map((cell, j) => {
+      const row = line.map((cell) => {
+        j++;
         let mark;
         switch (cell.state) {
           case 'hit':
@@ -17,8 +19,8 @@ const computerBoard = (() => {
             break;
         }
         return `
-        <div class="col" id="${j}" onclick="${() => { game.recieveAttack(i, j) }}">${mark}</div>
-        `;
+        <div class="col" id="${j}">${mark}</div>
+        `;        
       }).join('');
       return (
         `

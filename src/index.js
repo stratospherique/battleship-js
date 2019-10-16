@@ -17,7 +17,23 @@ computerBoard.buildPlayerBoard(playerGame.board);
 
 
 // Game loop
-computerBoard.comBoard.addEventListener('click', () => {
+let cord1 = 0;
+let cord2 = 1;
+
+window.onclick = e => {
+  if (e.target.className === 'col') {    
+    cord1 = parseInt(e.target.id.split('')[0]);
+    cord2 = parseInt(e.target.id.split('')[1]);
+    if (!cord2) {
+      cord2 = cord1;
+      cord1 = 0;
+    }
+    console.log(cord1, cord2)
+  }
+  
+}
+
+/* computerBoard.comBoard.addEventListener('click', () => {
   computerBoard.buildCompBoard(compGame);
   console.log(compGame.board);
-})
+}) */
