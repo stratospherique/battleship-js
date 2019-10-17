@@ -1,26 +1,27 @@
 const computerBoard = (() => {
   const comBoard = document.querySelector('.board__computer');
   const playerBoard = document.querySelector('.board__player');
-  let j = -1;
   const buildCompBoard = (game) => {
     const html = game.board.map((line, i) => {
-      const row = line.map((cell) => {
-        j++;
+      const row = line.map((cell, j) => {
         let mark;
+        let state = '';
         switch (cell.state) {
           case 'hit':
             mark = 'X';
+            state = 'hit';
             break;
           case 'miss':
             mark = '||';
+            state = 'miss';
             break;
           default:
-            mark = j;
+            mark = [i, j].join('');
             break;
         }
         return `
-        <div class="col" id="${j}">${mark}</div>
-        `;        
+        <div class="col ${state}" id="${[i, j].join('')}">${mark}</div>
+        `;
       }).join('');
       return (
         `
