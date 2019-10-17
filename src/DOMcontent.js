@@ -20,7 +20,7 @@ const computerBoard = (() => {
             break;
         }
         return `
-        <div class="col ${state}" id="${[i, j].join('')}">${mark}</div>
+        <div class="col bot ${state}" id="${[i, j].join('')}">${mark}</div>
         `;
       }).join('');
       return (
@@ -32,8 +32,8 @@ const computerBoard = (() => {
     comBoard.innerHTML = html;
   };
 
-  const buildPlayerBoard = (board) => {
-    const html = board.map((line) => {
+  const buildPlayerBoard = (game) => {
+    const html = game.board.map((line) => {
       const row = line.map((cell, ind) => {
         let state;
         switch (cell.state) {
@@ -59,8 +59,27 @@ const computerBoard = (() => {
     }).join('');
     playerBoard.innerHTML = html;
   };
+
+  const changeCell = (div, cell) => {
+    let state = '';
+    let mark;
+    switch (cell.state) {
+      case 'hit':
+        mark = 'X';
+        state = 'hit';
+        break;
+      case 'miss':
+        mark = '||';
+        state = 'miss';
+        break;
+      default:
+        mark = div.innerHtml;
+        break;
+    }
+    div.classList.add(state);
+  }
   return {
-    buildCompBoard, buildPlayerBoard, comBoard
+    buildCompBoard, buildPlayerBoard, comBoard, changeCell
   };
 })();
 export default computerBoard;

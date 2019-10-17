@@ -13,33 +13,39 @@ computerBoard.buildCompBoard(compGame);
 const playerGame = GameBoard([Ship(1), Ship(4), Ship(4)]);
 playerGame.placeShip();
 const player = Player("Clarence", "Human");
-computerBoard.buildPlayerBoard(playerGame.board);
+computerBoard.buildPlayerBoard(playerGame);
 
 
 // Game loop
 let cord1 = 0;
 let cord2 = 1;
+let turn = true;
 
 // Computer move
 
 const compMove = () => {
-  // Cancel click.
-  // Random 1 - 10 cord1 and 2  
-  // Check if cell has not recieve attack.
-  // Attack.
-  document.addEventListener('click', (e) => e.preventDefault());
-  const arr = compPlayer.play();
-  const [crd1, crd2] = arr;
-  playerGame.recieveAttack(crd1, crd2);
-  computerBoard.buildPlayerBoard(playerGame);
+  if (!turn) {
+    const arr = compPlayer.play();
+    const [crd1, crd2] = arr;
+    playerGame.recieveAttack(crd1, crd2);
+    computerBoard.buildPlayerBoard(playerGame);
+    setTimeout(() => { turn = !turn; }, 1000)
+  }
 };
 
-window.onclick = e => {
-  if (e.target.classList.value.includes('col')) {
-    cord1 = parseInt(e.target.id.split('')[0]);
-    cord2 = parseInt(e.target.id.split('')[1]);
+window.onclick = (e) => {
+  if (turn) {
+    if (e.target.classList.value.includes('bot')) {
+      cord1 = parseInt(e.target.id.split('')[0]);
+      cord2 = parseInt(e.target.id.split('')[1]);
+    } else { return; }
+
+    [cord1, cord2] = player.play(compGame.board[cord1][cord2]);
+    compGame.recieveAttack(cord1, cord2);
+    //computerBoard.buildCompBoard(compGame);
+    computerBoard.changeCell(e.target, compGame.board[cord1][cord2]);
+    turn = !turn;
+    setTimeout(compMove, 2000);
   }
-  compGame.recieveAttack(cord1, cord2);
-  computerBoard.buildCompBoard(compGame);
-  setTimeout(compMove, 2000);
+
 };

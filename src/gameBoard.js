@@ -32,7 +32,7 @@ const GameBoard = (ships) => {
       }
     }
     return true;
-  };  
+  };
 
   return {
     validPosition,
