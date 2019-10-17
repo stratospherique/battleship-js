@@ -20,6 +20,20 @@ computerBoard.buildPlayerBoard(playerGame.board);
 let cord1 = 0;
 let cord2 = 1;
 
+// Computer move
+
+const compMove = () => {
+  // Cancel click.
+  // Random 1 - 10 cord1 and 2  
+  // Check if cell has not recieve attack.
+  // Attack.
+  document.addEventListener('click', (e) => e.preventDefault());
+  const arr = compPlayer.play();
+  const [crd1, crd2] = arr;
+  playerGame.recieveAttack(crd1, crd2);
+  computerBoard.buildPlayerBoard(playerGame);
+};
+
 window.onclick = e => {
   if (e.target.classList.value.includes('col')) {
     cord1 = parseInt(e.target.id.split('')[0]);
@@ -27,8 +41,5 @@ window.onclick = e => {
   }
   compGame.recieveAttack(cord1, cord2);
   computerBoard.buildCompBoard(compGame);
-  setInterval(() => {
-    playerGame
-  }, 2000)
-}
-
+  setTimeout(compMove, 2000);
+};
