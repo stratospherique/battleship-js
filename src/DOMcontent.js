@@ -50,7 +50,7 @@ const computerBoard = (() => {
       }).join('');
       return (
         `
-        <div class= "row" > ${ row}</div>
+        <div class= "row" > ${row}</div>
         `
       );
     }).join('');
@@ -75,11 +75,11 @@ const computerBoard = (() => {
     }
     div.classList.add(state);
     div.innerText = mark;
-  }
+  };
 
 
   return {
-    buildCompBoard, buildPlayerBoard, comBoard, changeCell
+    buildCompBoard, buildPlayerBoard, comBoard, changeCell,
   };
 })();
 export default computerBoard;

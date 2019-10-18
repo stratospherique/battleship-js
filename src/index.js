@@ -1,40 +1,46 @@
-import _ from 'lodash';
 import './assets/css/main.scss';
 import computerBoard from './DOMcontent';
 import GameBoard from './gameBoard';
 import Ship from './ships';
 import Player from './player';
 
-const compGame = GameBoard([Ship(1), Ship(4), Ship(4)]);
-compGame.placeShip();
-const compPlayer = Player("Computer", "bot");
-computerBoard.buildCompBoard(compGame);
-
-const playerGame = GameBoard([Ship(1), Ship(4), Ship(4)]);
-playerGame.placeShip();
-const player = Player("Clarence", "Human");
-computerBoard.buildPlayerBoard(playerGame);
-
+let compGame = null;
+let playerGame = null;
+const compPlayer = Player('Computer', 'bot');
+const player = Player('Clarence', 'Human');
 
 // Game loop
 let cord1 = 0;
 let cord2 = 1;
 let turn = true;
 
-// Computer move
+const gameStart = () => {
+  compGame = GameBoard([Ship(1)]);
+  compGame.placeShip();
+  computerBoard.buildCompBoard(compGame);
 
+  playerGame = GameBoard([Ship(1)]);
+  playerGame.placeShip();
+  computerBoard.buildPlayerBoard(playerGame);
+};
+
+gameStart();
+
+// Computer move
 const compMove = () => {
   if (!turn) {
-    //console.log(playerGame.board);
+    // console.log(playerGame.board);
     const arr = compPlayer.play();
     const [crd1, crd2] = arr;
     arr.unshift('P');
     const div = document.getElementById(arr.join(''));
-    console.log(playerGame.board[crd1][crd2]);
     playerGame.recieveAttack(crd1, crd2);
-    console.log(playerGame.board[crd1][crd2]);
+    if (playerGame.gameOver()) {
+      alert('Computer Won the Game');
+      gameStart();
+    }
     computerBoard.changeCell(div, playerGame.board[crd1][crd2]);
-    setTimeout(() => { turn = !turn; }, 1000)
+    setTimeout(() => { turn = !turn; }, 1000);
   }
 };
 
@@ -44,15 +50,19 @@ window.onclick = (e) => {
       cord1 = parseInt(e.target.id.split('')[0]);
       cord2 = parseInt(e.target.id.split('')[1]);
     } else { return; }
-
     if (player.play(compGame.board[cord1][cord2])) {
       compGame.recieveAttack(cord1, cord2);
       computerBoard.changeCell(e.target, compGame.board[cord1][cord2]);
+      // console.log(compGame.board);
+      if (compGame.gameOver()) {
+        alert('player won the game');
+        gameStart();
+        return;
+      }
       turn = !turn;
       setTimeout(compMove, 2000);
     } else {
       alert('wrong move');
     }
   }
-
 };

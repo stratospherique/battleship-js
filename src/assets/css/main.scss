@@ -19,41 +19,49 @@
     height: 20px;
     width: 20px;
     padding: 10px;
-    border-radius: 4px;
-    color: white;
-    background-color: #003f5c;
+    border-radius: 4px;    
+    background-color: #fda77f;
     transition: .8s;
     &:hover{
       transform: scale(1.05);
       cursor: pointer;
-      background-color: #085c83;
+      background-color: #fa7f46;
     }
   }
   
   
-  &__player{
+  &__player {
     .col{
-      background-color: #bc5090;
+      background-color: #f0decb;
       &:hover{
-        background-color: #fd87ce;
-      }
+        background-color: #f0decb;
+        transform: scale(1.00);
+        cursor: auto;        
+      }     
     }
-    
-  }
-}
-
-
-.taken {
-  background-color: greenyellow !important;
-  &:hover{
-    transform: none;
-    cursor: auto;
-    background-color: greenyellow;
   }    
 }
 
+
+
+.taken {
+  background-color: #1a3e59 !important; 
+}
+
 .hit {
-  background-color: #ff6361 !important;
+  background-color: #f0134d !important;
+  animation: hit 1s ease-in-out 0s;
+  @keyframes hit {
+    50% {
+      transform: scale(3);
+      opacity: .5;
+    }
+
+    100%{
+      transfor: scale(1);
+      opacity: 1;
+    }
+  }
   &:hover{
     transform: none;
     cursor: auto;
@@ -62,7 +70,18 @@
 }
 
 .miss {
-  background-color: #636968 !important;
+  background-color: #3e64ff !important;
+  animation: hit 1s ease-in-out 0s;
+  @keyframes hit {
+    50% {
+      transform: scale(3);
+      opacity: .5;
+    }
+    100%{
+      transfor: scale(1);
+      opacity: 1;
+    }
+  }
   &:hover{
     transform: none;
     cursor: auto;
