@@ -27,9 +27,7 @@
       cursor: pointer;
       background-color: #fa7f46;
     }
-  }
-  
-  
+  }  
   &__player {
     .col{
       background-color: #f0decb;
@@ -41,13 +39,9 @@
     }
   }    
 }
-
-
-
 .taken {
   background-color: #1a3e59 !important; 
 }
-
 .hit {
   background-color: #f0134d !important;
   animation: hit 1s ease-in-out 0s;
