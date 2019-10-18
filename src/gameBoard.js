@@ -1,18 +1,16 @@
-const gridT = ['0123456789', '0123456789'];
-const grid = new Array(10);
-gridT[0].split('').forEach((item, i) => {
-  grid[i] = [];
-  gridT[1].split('').forEach((suItem) => {
-    grid[i].push({
-      pos: `${item}${suItem}`,
-      // status: taken/empty/hit/miss
-      state: 'empty',
+const GameBoard = (ships) => {
+  const gridT = ['0123456789', '0123456789'];
+  const grid = new Array(10);
+  gridT[0].split('').forEach((item, i) => {
+    grid[i] = [];
+    gridT[1].split('').forEach((suItem) => {
+      grid[i].push({
+        pos: `${item}${suItem}`,
+        state: 'empty',
+      });
     });
   });
-});
 
-
-const GameBoard = (ships) => {
   const board = grid;
   const sunken = [];
   const validPosition = (ship, coord, facing) => {
