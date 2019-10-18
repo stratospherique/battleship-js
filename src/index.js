@@ -10,7 +10,7 @@ compGame.placeShip();
 const compPlayer = Player("Computer", "bot");
 computerBoard.buildCompBoard(compGame);
 
-const playerGame = Object.assign({}, GameBoard([Ship(1), Ship(4), Ship(4)]));
+const playerGame = GameBoard([Ship(1), Ship(4), Ship(4)]);
 playerGame.placeShip();
 const player = Player("Clarence", "Human");
 computerBoard.buildPlayerBoard(playerGame);
@@ -25,14 +25,15 @@ let turn = true;
 
 const compMove = () => {
   if (!turn) {
+    //console.log(playerGame.board);
     const arr = compPlayer.play();
     const [crd1, crd2] = arr;
     arr.unshift('P');
     const div = document.getElementById(arr.join(''));
-    console.log(playerGame.board[cord1][cord2]);
+    console.log(playerGame.board[crd1][crd2]);
     playerGame.recieveAttack(crd1, crd2);
-    console.log(playerGame.board[cord1][cord2]);
-    computerBoard.changeCell(div, playerGame.board[cord1][cord2]);
+    console.log(playerGame.board[crd1][crd2]);
+    computerBoard.changeCell(div, playerGame.board[crd1][crd2]);
     setTimeout(() => { turn = !turn; }, 1000)
   }
 };
