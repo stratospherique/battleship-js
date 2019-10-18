@@ -33,8 +33,8 @@ const computerBoard = (() => {
   };
 
   const buildPlayerBoard = (game) => {
-    const html = game.board.map((line) => {
-      const row = line.map((cell, ind) => {
+    const html = game.board.map((line, ind) => {
+      const row = line.map((cell, jind) => {
         let state;
         switch (cell.state) {
           case 'taken':
@@ -48,7 +48,7 @@ const computerBoard = (() => {
             break;
         }
         return `
-        <div class= "col ${cell.state}" id = "${ind}" > ${state}</div>
+        <div class= "col ${cell.state}" id = "P${[ind, jind].join('')}" > ${state}</div>
         `;
       }).join('');
       return (
@@ -78,6 +78,8 @@ const computerBoard = (() => {
     }
     div.classList.add(state);
   }
+
+
   return {
     buildCompBoard, buildPlayerBoard, comBoard, changeCell
   };

@@ -27,8 +27,10 @@ const compMove = () => {
   if (!turn) {
     const arr = compPlayer.play();
     const [crd1, crd2] = arr;
+    arr.unshift('P');
+    const div = document.getElementById(arr.join(''));
     playerGame.recieveAttack(crd1, crd2);
-    computerBoard.buildPlayerBoard(playerGame);
+    computerBoard.changeCell(div, playerGame.board[cord1][cord2]);
     setTimeout(() => { turn = !turn; }, 1000)
   }
 };
