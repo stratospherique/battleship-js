@@ -10,7 +10,7 @@ compGame.placeShip();
 const compPlayer = Player("Computer", "bot");
 computerBoard.buildCompBoard(compGame);
 
-const playerGame = GameBoard([Ship(1), Ship(4), Ship(4)]);
+const playerGame = Object.assign({}, GameBoard([Ship(1), Ship(4), Ship(4)]));
 playerGame.placeShip();
 const player = Player("Clarence", "Human");
 computerBoard.buildPlayerBoard(playerGame);
@@ -29,7 +29,9 @@ const compMove = () => {
     const [crd1, crd2] = arr;
     arr.unshift('P');
     const div = document.getElementById(arr.join(''));
+    console.log(playerGame.board[cord1][cord2]);
     playerGame.recieveAttack(crd1, crd2);
+    console.log(playerGame.board[cord1][cord2]);
     computerBoard.changeCell(div, playerGame.board[cord1][cord2]);
     setTimeout(() => { turn = !turn; }, 1000)
   }
@@ -42,12 +44,14 @@ window.onclick = (e) => {
       cord2 = parseInt(e.target.id.split('')[1]);
     } else { return; }
 
-    [cord1, cord2] = player.play(compGame.board[cord1][cord2]);
-    compGame.recieveAttack(cord1, cord2);
-    //computerBoard.buildCompBoard(compGame);
-    computerBoard.changeCell(e.target, compGame.board[cord1][cord2]);
-    turn = !turn;
-    setTimeout(compMove, 2000);
+    if (player.play(compGame.board[cord1][cord2])) {
+      compGame.recieveAttack(cord1, cord2);
+      computerBoard.changeCell(e.target, compGame.board[cord1][cord2]);
+      turn = !turn;
+      setTimeout(compMove, 2000);
+    } else {
+      alert('wrong move');
+    }
   }
 
 };

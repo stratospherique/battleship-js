@@ -40,11 +40,8 @@ const computerBoard = (() => {
           case 'taken':
             state = '#';
             break;
-          case 'miss':
-            state = '||';
-            break;
           default:
-            state = ind;
+            state = [ind, jind].join('');
             break;
         }
         return `
@@ -77,6 +74,7 @@ const computerBoard = (() => {
         break;
     }
     div.classList.add(state);
+    div.innerText = mark;
   }
 
 

@@ -13,11 +13,14 @@ const Player = (nam, typ) => {
         do {
           randomH = Math.round(Math.random() * 9);
           randomV = Math.round(Math.random() * 9);
-        } while (moves.includes([randomV, randomH]));
-        moves.push([randomV, randomH]);
+        } while (moves.includes([randomV, randomH].join('')));
+        moves.push([randomV, randomH].join(''));
         return [randomV, randomH];
       }
       const [cord1, cord2] = cell.pos.split('').map((e) => parseInt(e));
+      if (!moves.includes([cord1, cord2].join(''))) {
+        moves.push([cord1, cord2].join(''));
+      } else { return false; }
       return [cord1, cord2];
     },
   };
