@@ -1,51 +1,57 @@
-@import 'reset.css';
-
-main {
-  position: relative;
+@import "reset.css";
+body {
+  font-family: "Righteous", cursive;
 }
 
-.main-board{
-  display: flex;
+main {
+  background-image: linear-gradient(to right, #4baea0, #278d7f);
   height: 100vh;
+}
+
+.in-wrapper {
+  padding-top: 140px;
+}
+.main-board {
+  display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.board{
-  .row{
-    display: flex;    
+.board {
+  .row {
+    display: flex;
   }
-  
-  .col{
+
+  .col {
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid black;
-    margin: .5px;
+    margin: 0.5px;
     height: 20px;
     width: 20px;
     padding: 10px;
-    border-radius: 4px;    
+    border-radius: 4px;
     background-color: #fda77f;
-    transition: .8s;
-    &:hover{
+    transition: 0.8s;
+    &:hover {
       transform: scale(1.05);
       cursor: pointer;
       background-color: #fa7f46;
     }
-  }  
+  }
   &__player {
-    .col{
+    .col {
       background-color: #f0decb;
-      &:hover{
+      &:hover {
         background-color: #f0decb;
-        transform: scale(1.00);
-        cursor: auto;        
-      }     
+        transform: scale(1);
+        cursor: auto;
+      }
     }
-  }    
+  }
 }
 .taken {
-  background-color: #1a3e59 !important; 
+  background-color: #1a2c3a !important;
 }
 .hit {
   background-color: #f0134d !important;
@@ -53,15 +59,15 @@ main {
   @keyframes hit {
     50% {
       transform: scale(3);
-      opacity: .5;
+      opacity: 0.5;
     }
 
-    100%{
+    100% {
       transfor: scale(1);
       opacity: 1;
     }
   }
-  &:hover{
+  &:hover {
     transform: none;
     cursor: auto;
     background-color: #ff6361;
@@ -74,14 +80,14 @@ main {
   @keyframes hit {
     50% {
       transform: scale(3);
-      opacity: .5;
+      opacity: 0.5;
     }
-    100%{
+    100% {
       transfor: scale(1);
       opacity: 1;
     }
   }
-  &:hover{
+  &:hover {
     transform: none;
     cursor: auto;
     background-color: #d1afae;
@@ -89,27 +95,53 @@ main {
 }
 
 .status {
-  border: 1px solid;
-  width: 40%;
-  position: absolute;
-  top: 5%;
-  left: 30%;
-  height: 3rem;
-
   display: flex;
   justify-content: space-around;
-
+  align-items: center;
+  height: 20vh;
   .pl-status,
   .cp-status {
-    border: 1px solid;
-    width: 7rem;
+    border: 6px solid #f2eee5;
+    background-image: linear-gradient(to right, #979797, #c5bfbf);
+    border-radius: 50px;
+    width: 10rem;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: #f2eee5;
   }
 }
 
+.playerWin,
+.computerWin {
+  margin-top: 140px;
+  height: 40vh;
+  background-image: linear-gradient(to right, #f0134d, #90072b);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    color: antiquewhite;
+    font-size: 65px;
+  }
+  button {
+    padding: 30px;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #4baea0, #278d7f);
+    color: antiquewhite;
+    font-size: 25px;
+    font-family: "Righteous", cursive;
+    margin-top: 40px;
+  }
+}
+
+.computerWin {
+  background-image: linear-gradient(to right, #3413f0, #634ce7);
+}
+
 .active {
-  background-color: #f0134d;
+  background-image: linear-gradient(to right, #70416d, #995995) !important;
 }
