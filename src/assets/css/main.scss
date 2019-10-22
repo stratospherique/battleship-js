@@ -1,4 +1,9 @@
 @import 'reset.css';
+
+main {
+  position: relative;
+}
+
 .main-board{
   display: flex;
   height: 100vh;
@@ -80,5 +85,23 @@
     transform: none;
     cursor: auto;
     background-color: #d1afae;
+  }
+}
+
+.status {
+  border: 1px solid;
+  width: 40%;
+  position: absolute;
+  top: 5%;
+  left: 30%;
+  height: 3rem;
+
+  display: flex;
+  justify-content: space-around;
+
+  .pl-status {
+    border: 1px solid;
+    width: 7rem;
+    
   }
 }

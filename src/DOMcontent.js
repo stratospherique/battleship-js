@@ -1,4 +1,5 @@
 const computerBoard = (() => {
+  const statusBanner = document.querySelector('.status');
   const comBoard = document.querySelector('.board__computer');
   const playerBoard = document.querySelector('.board__player');
   const buildCompBoard = (game) => {
@@ -76,6 +77,10 @@ const computerBoard = (() => {
     div.classList.add(state);
     div.innerText = mark;
   };
+
+  const updateBanner = () => {
+
+  }
 
 
   return {
