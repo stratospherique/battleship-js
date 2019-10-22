@@ -39,7 +39,7 @@ const computerBoard = (() => {
                 break;
             }
             return `
-        <div class="col bot ${state}" id="${[i, j].join("")}">${mark}</div>
+        <div class="col bot ${cell.state}" id="${[i, j].join("")}">${mark}</div>
         `;
           })
           .join("");

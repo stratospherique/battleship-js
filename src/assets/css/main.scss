@@ -6,11 +6,16 @@ body {
 main {
   background-image: linear-gradient(to right, #4baea0, #278d7f);
   height: 100vh;
+  h1 {
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+    color: antiquewhite;
+  }
 }
 
-.in-wrapper {
-  padding-top: 140px;
-}
 .main-board {
   display: flex;
   justify-content: space-around;
@@ -78,9 +83,16 @@ main {
   background-color: #3e64ff !important;
   animation: hit 1s ease-in-out 0s;
   @keyframes hit {
+    0% {
+      background-color: transparent;
+    }
     50% {
       transform: scale(3);
+      background-color: transparent;
       opacity: 0.5;
+    }
+    80% {
+      background-color: transparent;
     }
     100% {
       transfor: scale(1);
