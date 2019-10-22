@@ -15,7 +15,23 @@ main {
     color: antiquewhite;
   }
 }
-
+.in-wrapper {
+  animation: hell 2s ease-in 0s;
+  @keyframes hell {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    80% {
+      opacity: 0.75;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
 .main-board {
   display: flex;
   justify-content: space-around;
@@ -129,6 +145,22 @@ main {
 
 .playerWin,
 .computerWin {
+  //transition: 1s;
+  animation: hello 2s ease-out 0s;
+  @keyframes hello {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    80% {
+      opacity: 0.75;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
   margin-top: 140px;
   height: 40vh;
   background-image: linear-gradient(to right, #f0134d, #90072b);
@@ -143,7 +175,7 @@ main {
   button {
     padding: 30px;
     border-radius: 10px;
-    background-image: linear-gradient(to right, #4baea0, #278d7f);
+    background-image: linear-gradient(to left, #4baea0, #278d7f);
     color: antiquewhite;
     font-size: 25px;
     font-family: "Righteous", cursive;

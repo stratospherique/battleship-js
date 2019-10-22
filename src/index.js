@@ -8,16 +8,7 @@ let compGame = null;
 let playerGame = null;
 const compPlayer = Player("Computer", "bot");
 const player = Player("Clarence", "Human");
-const ships = [
-  Ship(5),
-  Ship(4),
-  Ship(3),
-  Ship(3),
-  Ship(2),
-  Ship(2),
-  Ship(1),
-  Ship(1)
-];
+const ships = [Ship(2)];
 let turn;
 let plHits;
 let cpHits;
