@@ -99,9 +99,17 @@ main {
   display: flex;
   justify-content: space-around;
 
-  .pl-status {
+  .pl-status,
+  .cp-status {
     border: 1px solid;
     width: 7rem;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
+}
+
+.active {
+  background-color: #f0134d;
 }

@@ -1,7 +1,10 @@
 const computerBoard = (() => {
-  const statusBanner = document.querySelector('.status');
+  const playerStatus = document.querySelector('.pl-status');
+  const compStatus = document.querySelector('.cp-status');
   const comBoard = document.querySelector('.board__computer');
   const playerBoard = document.querySelector('.board__player');
+  const playerHits = document.querySelector('#pl-hits')
+  const compHits = document.querySelector('#cp-hits')
   const buildCompBoard = (game) => {
     const html = game.board.map((line, i) => {
       const row = line.map((cell, j) => {
@@ -46,7 +49,7 @@ const computerBoard = (() => {
             break;
         }
         return `
-        <div class= "col ${cell.state}" id = "P${[ind, jind].join('')}" > ${state}</div>
+        <div class= "col " id = "P${[ind, jind].join('')}" > ${state}</div>
         `;
       }).join('');
       return (
@@ -78,13 +81,35 @@ const computerBoard = (() => {
     div.innerText = mark;
   };
 
-  const updateBanner = () => {
+  const updateBanner = (turn, hits) => {
+    if (turn) {
+      playerHits.innerText = hits;
+      playerStatus.classList.remove('active');
+      compStatus.classList.add('active');
+    } else {
+      compHits.innerText = hits;
+      playerStatus.classList.add('active');
+      compStatus.classList.remove('active');
+    }
+  }
 
+  const gameMessage = (turn, winner) => {
+    if (turn) {
+      playerHits.innerText = "is the winner";
+      playerStatus.classList.remove('active');
+      compStatus.classList.remove('active');
+      playerStatus.classList.add('winner');
+    } else {
+      compHits.innerText = "is the winner";
+      playerStatus.classList.remove('active');
+      compStatus.classList.remove('active');
+      compStatus.classList.add('winner');
+    }
   }
 
 
   return {
-    buildCompBoard, buildPlayerBoard, comBoard, changeCell,
+    buildCompBoard, buildPlayerBoard, comBoard, changeCell, updateBanner, gameMessage
   };
 })();
 export default computerBoard;

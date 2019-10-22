@@ -9,6 +9,8 @@ let playerGame = null;
 const compPlayer = Player('Computer', 'bot');
 const player = Player('Clarence', 'Human');
 let turn;
+let plHits;
+let cpHits;
 // Game loop
 
 
@@ -23,6 +25,10 @@ const gameStart = () => {
   playerGame.placeShip();
   computerBoard.buildPlayerBoard(playerGame);
   turn = true;
+  plHits = 0;
+  cpHits = 0;
+  computerBoard.updateBanner(true, 0);
+  computerBoard.updateBanner(false, 0)
 };
 
 gameStart();
@@ -34,12 +40,14 @@ const compMove = () => {
     const arr = compPlayer.play();
     const [crd1, crd2] = arr;
     arr.unshift('P');
+    cpHits += 1;
+    computerBoard.updateBanner(turn, cpHits);
     const div = document.getElementById(arr.join(''));
     playerGame.recieveAttack(crd1, crd2);
     computerBoard.changeCell(div, playerGame.board[crd1][crd2]);
     setTimeout(() => { turn = !turn; }, 1000);
     if (playerGame.gameOver()) {
-      alert('Computer Won the Game');
+      computerBoard.gameMessage(false);
       gameStart();
     }
   }
@@ -56,10 +64,11 @@ window.onclick = (e) => {
     if (player.play(compGame.board[cord1][cord2])) {
       compGame.recieveAttack(cord1, cord2);
       computerBoard.changeCell(e.target, compGame.board[cord1][cord2]);
-      // console.log(compGame.board);
+      plHits += 1;
+      computerBoard.updateBanner(turn, plHits);
       turn = !turn;
       if (compGame.gameOver()) {
-        alert('player won the game');
+        computerBoard.gameMessage(true);
         gameStart();
         return;
       }
