@@ -38,9 +38,9 @@ const GameBoard = ships => {
     placeShip: () => {
       ships.map(ship => {
         let [randomH, randomV] = [0, 0];
-        let coord = "";
+        let coord;
         const facing = ["horizontal", "vertical"];
-        let dir = 0;
+        let dir;
         do {
           randomH = Math.round(Math.random() * 9);
           randomV = Math.round(Math.random() * 9);
@@ -48,13 +48,12 @@ const GameBoard = ships => {
           dir = Math.round(Math.random() * 1);
         } while (!validPosition(ship, coord, facing[dir]));
         if (facing[dir] === "horizontal") {
-          for (let i = randomH; i <= randomH + ship.length - 1; i++) {
+          for (let i = randomH; i < randomH + ship.length; i++) {
             board[randomV][i].state = "taken";
             ship.position.push(board[randomV][i].pos);
           }
-        }
-        if (facing[dir] === "vertical") {
-          for (let i = randomV; i <= randomV + ship.length - 1; i++) {
+        } else if (facing[dir] === "vertical") {
+          for (let i = randomV; i < randomV + ship.length; i++) {
             board[i][randomH].state = "taken";
             ship.position.push(board[i][randomH].pos);
           }
@@ -75,9 +74,10 @@ const GameBoard = ships => {
       } else {
         board[coord1][coord2].state = "miss";
       }
+      console.log(ship);
     },
     gameOver: () => {
-      if (sunken.length === ships.length) {
+      if (sunken.length >= ships.length) {
         return true;
       }
       return false;
