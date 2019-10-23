@@ -1,0 +1,214 @@
+@import "reset.css";
+body {
+  font-family: "Righteous", cursive;
+}
+
+main {
+  background-image: linear-gradient(to right, #4baea0, #278d7f);
+  height: 100vh;
+  h1 {
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+    color: antiquewhite;
+  }
+}
+.in-wrapper {
+  animation: hell 2s ease-in 0s;
+  @keyframes hell {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    80% {
+      opacity: 0.75;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+.main-board {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+.board {
+  .row {
+    display: flex;
+  }
+
+  .col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    margin: 0.5px;
+    height: 30px;
+    width: 30px;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #fda77f;
+    transition: 0.8s;
+    &:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+      background-color: #fa7f46;
+    }
+  }
+  &__player {
+    .col {
+      background-color: #f0decb;
+      &:hover {
+        background-color: #f0decb;
+        transform: scale(1);
+        cursor: auto;
+      }
+    }
+  }
+}
+.taken {
+  background-color: #1a2c3a !important;
+}
+.hit {
+  background-color: #f0134d !important;
+  animation: hit 1s ease-in-out 0s;
+  @keyframes hit {
+    50% {
+      transform: scale(3);
+      opacity: 0.5;
+    }
+
+    100% {
+      transfor: scale(1);
+      opacity: 1;
+    }
+  }
+  &:hover {
+    transform: none;
+    cursor: auto;
+    background-color: #ff6361;
+  }
+}
+
+.miss {
+  background-color: #3e64ff !important;
+  animation: hit 1s ease-in-out 0s;
+  @keyframes hit {
+    0% {
+      background-color: transparent;
+    }
+    50% {
+      transform: scale(3);
+      background-color: transparent;
+      opacity: 0.5;
+    }
+    80% {
+      background-color: transparent;
+    }
+    100% {
+      transfor: scale(1);
+      opacity: 1;
+    }
+  }
+  &:hover {
+    transform: none;
+    cursor: auto;
+    background-color: #d1afae;
+  }
+}
+
+.status {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 20vh;
+  .pl-status,
+  .cp-status {
+    border: 6px solid #f2eee5;
+    background-image: linear-gradient(to right, #979797, #c5bfbf);
+    border-radius: 50px;
+    width: 13rem;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: #f2eee5;
+    font-size: 25px;
+  }
+}
+
+.playerWin,
+.computerWin {
+  //transition: 1s;
+  animation: hello 2s ease-out 0s;
+  @keyframes hello {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    80% {
+      opacity: 0.75;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  margin-top: 140px;
+  height: 40vh;
+  background-image: linear-gradient(to right, #3413f0, #634ce7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    color: antiquewhite;
+    font-size: 65px;
+  }
+  button {
+    padding: 30px;
+    border-radius: 10px;
+    background-image: linear-gradient(to left, #4baea0, #278d7f);
+    color: antiquewhite;
+    font-size: 25px;
+    font-family: "Righteous", cursive;
+    margin-top: 40px;
+  }
+}
+
+.computerWin {
+  background-image: linear-gradient(to right, #f0134d, #90072b);
+}
+
+.active {
+  background-image: linear-gradient(to right, #70416d, #995995) !important;
+}
+
+.invalid {
+  position: absolute;
+  width: 15%;
+  top: -25%;
+  left: 41%;
+  padding: 20px;
+  font-size: 25px;
+  border-radius: 20px;
+  border: 5px solid antiquewhite;
+  background-image: linear-gradient(to right, #f0134d, #90072b);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: antiquewhite;
+}
+
+.hide {
+  transform: scale(0);
+}
