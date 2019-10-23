@@ -81,6 +81,9 @@ const GameBoard = ships => {
         return true;
       }
       return false;
+    },
+    sunkedShips: () => {
+      return sunken.length;
     }
   };
 };

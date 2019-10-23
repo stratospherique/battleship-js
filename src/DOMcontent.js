@@ -5,6 +5,7 @@ const computerBoard = (() => {
   const playerBoard = document.querySelector(".board__player");
   const playerHits = document.querySelector("#pl-hits");
   const compHits = document.querySelector("#cp-hits");
+  const worngMoveInd = document.querySelector('.invalid');
   const wrapper = document.querySelector(".in-wrapper");
   const playerWin = `
     <div class="playerWin">
@@ -101,12 +102,12 @@ const computerBoard = (() => {
   };
 
   const updateBanner = (turn, hits) => {
-    if (!turn) {
-      playerHits.innerText = hits;
+    if (turn) {
+      playerHits.innerText = `${hits} sunked ships`;
       playerStatus.classList.remove("active");
       compStatus.classList.add("active");
     } else {
-      compHits.innerText = hits;
+      compHits.innerText = `${hits} sunked ships`;
       playerStatus.classList.add("active");
       compStatus.classList.remove("active");
     }
@@ -135,7 +136,8 @@ const computerBoard = (() => {
     gameMessage,
     wrapper,
     playerWin,
-    computerWin
+    computerWin,
+    worngMoveInd
   };
 })();
 export default computerBoard;

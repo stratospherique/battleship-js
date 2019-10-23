@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Righteous&display=swap"
-      rel="stylesheet"
-    />
 
-    <title>BattleShip</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet" />
 
-  <body>
-    <main class="main">
-      <h1>BATTLESHIP!!</h1>
-      <div class="in-wrapper">
-        <div class="status">
-          <div class="pl-status">
-            <strong>Player 1</strong>
-            <label class="game" id="pl-hits"></label>
-          </div>
-          <div class="cp-status">
-            <strong>Player 2</strong>
-            <label class="game" id="cp-hits"></label>
-          </div>
+  <title>BattleShip</title>
+</head>
+
+<body>
+  <main class="main">
+    <h1>BATTLESHIP!!</h1>
+    <div class="in-wrapper">
+      <div class="status">
+        <div class="pl-status">
+          <strong>Player 1</strong>
+          <label class="game" id="pl-hits"></label>
         </div>
-        <div class="main-board">
-          <div class="player">
-            <div class="board board__player"></div>
-          </div>
-          <div class="computer">
-            <div class="board board__computer"></div>
-          </div>
+        <div class="cp-status">
+          <strong>Computer</strong>
+          <label class="game" id="cp-hits"></label>
         </div>
       </div>
-    </main>
-  </body>
+      <div class="main-board">
+        <div class="player">
+          <div class="board board__player"></div>
+        </div>
+        <div class="computer">
+          <div class="board board__computer"></div>
+        </div>
+        <div class="invalid hide">
+          Invalid Move
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
 </html>

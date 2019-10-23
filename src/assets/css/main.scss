@@ -36,6 +36,7 @@ main {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  position: relative;
 }
 .board {
   .row {
@@ -163,7 +164,7 @@ main {
   }
   margin-top: 140px;
   height: 40vh;
-  background-image: linear-gradient(to right, #f0134d, #90072b);
+  background-image: linear-gradient(to right, #3413f0, #634ce7);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -184,9 +185,21 @@ main {
 }
 
 .computerWin {
-  background-image: linear-gradient(to right, #3413f0, #634ce7);
+  background-image: linear-gradient(to right, #f0134d, #90072b);
 }
 
 .active {
   background-image: linear-gradient(to right, #70416d, #995995) !important;
+}
+
+.invalid {
+  position: absolute;
+  width: 10%;
+  top: -20%;
+  left: 45%;
+  background-color: #f0134d;
+}
+
+.hide {
+  transform: scale(0);
 }

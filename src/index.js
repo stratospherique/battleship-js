@@ -8,8 +8,8 @@ let compGame = null;
 let playerGame = null;
 const compPlayer = Player("Computer", "bot");
 const player = Player("Clarence", "Human");
-const shipPlayer = [Ship(2)];
-const shipComp = [Ship(2)];
+const shipPlayer = [Ship(2), Ship(1), Ship(3), Ship(4)];
+const shipComp = [Ship(2), Ship(1), Ship(3), Ship(4)];
 let turn;
 let plHits;
 let cpHits;
@@ -40,10 +40,12 @@ const compMove = () => {
     const arr = compPlayer.play();
     const [crd1, crd2] = arr;
     arr.unshift("P");
-    cpHits += 1;
-    computerBoard.updateBanner(turn, cpHits);
+
     const div = document.getElementById(arr.join(""));
     playerGame.recieveAttack(crd1, crd2);
+    cpHits = playerGame.sunkedShips();
+    computerBoard.updateBanner(turn, cpHits);
+
     computerBoard.changeCell(div, playerGame.board[crd1][crd2]);
     setTimeout(() => {
       turn = !turn;
@@ -73,8 +75,9 @@ window.onclick = e => {
     if (player.play(compGame.board[cord1][cord2])) {
       compGame.recieveAttack(cord1, cord2);
       computerBoard.changeCell(e.target, compGame.board[cord1][cord2]);
-      plHits += 1;
+      plHits = compGame.sunkedShips();
       computerBoard.updateBanner(turn, plHits);
+      computerBoard.worngMoveInd.classList.value = 'invalid hide';
       turn = !turn;
       if (compGame.gameOver()) {
         computerBoard.wrapper.innerHTML = computerBoard.playerWin;
@@ -83,7 +86,7 @@ window.onclick = e => {
       }
       setTimeout(compMove, 1500);
     } else {
-      alert("wrong move");
+      computerBoard.worngMoveInd.classList.remove('hide');
     }
   }
 };
