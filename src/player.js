@@ -1,12 +1,11 @@
 const Player = (nam, typ) => {
   const type = typ;
   const name = nam;
-  let moves = [];
+  const moves = [];
   return {
     getName: () => name,
     getType: () => type,
     getMoves: () => moves,
-    initMoves: (arr) => { moves = [] },
     play: (cell) => {
       if (type === 'bot') {
         let randomH;

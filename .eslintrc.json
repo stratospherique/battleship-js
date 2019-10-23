@@ -15,9 +15,10 @@
         "sourceType": "module"
     },
     "rules": {
-      "radix": "off",
-      "no-lone-blocks":"off",
-      "no-plusplus":"off",
-      "no-param-reassign":"off"
+        "arrow-parens":"off",
+        "radix": "off",
+        "no-lone-blocks":"off",
+        "no-plusplus":"off",
+        "no-param-reassign":"off"
     }
 }
