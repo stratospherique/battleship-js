@@ -18,8 +18,6 @@ const refresh = () => {
 };
 
 const gameStart = () => {
-  compPlayer.initMoves();
-  player.initMoves();
   compGame = GameBoard(shipComp);
   compGame.placeShip();
   computerBoard.buildCompBoard(compGame);
