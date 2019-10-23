@@ -1,12 +1,12 @@
 const computerBoard = (() => {
-  const playerStatus = document.querySelector(".pl-status");
-  const compStatus = document.querySelector(".cp-status");
-  const comBoard = document.querySelector(".board__computer");
-  const playerBoard = document.querySelector(".board__player");
-  const playerHits = document.querySelector("#pl-hits");
-  const compHits = document.querySelector("#cp-hits");
-  const worngMoveInd = document.querySelector(".invalid");
-  const wrapper = document.querySelector(".in-wrapper");
+  const playerStatus = document.querySelector('.pl-status');
+  const compStatus = document.querySelector('.cp-status');
+  const comBoard = document.querySelector('.board__computer');
+  const playerBoard = document.querySelector('.board__player');
+  const playerHits = document.querySelector('#pl-hits');
+  const compHits = document.querySelector('#cp-hits');
+  const worngMoveInd = document.querySelector('.invalid');
+  const wrapper = document.querySelector('.in-wrapper');
   const playerWin = `
     <div class="playerWin">
       <h1> Congratulations!! You are the Winner! </h1>
@@ -19,111 +19,93 @@ const computerBoard = (() => {
     <button class="gameStart"> Play Again </button>
   </div> 
 `;
-  const buildCompBoard = game => {
+  const buildCompBoard = (game) => {
     const html = game.board
       .map((line, i) => {
         const row = line
           .map((cell, j) => {
             let mark;
-            let state = "";
+            let state = '';
             switch (cell.state) {
-              case "hit":
-                mark = "x";
-                state = "hit";
+              case 'hit':
+                mark = 'x';
+                state = 'hit';
                 break;
-              case "miss":
-                mark = "||";
-                state = "miss";
+              case 'miss':
+                mark = '||';
+                state = 'miss';
                 break;
               default:
-                mark = [i, j].join("");
+                mark = [i, j].join('');
                 break;
             }
             return `
-        <div class="col bot ${state}" id="${[i, j].join("")}">${mark}</div>
+        <div class="col bot ${state}" id="${[i, j].join('')}">${mark}</div>
         `;
           })
-          .join("");
+          .join('');
         return `
         <div class="row" > ${row}</div>
         `;
       })
-      .join("");
+      .join('');
     comBoard.innerHTML = html;
   };
 
-  const buildPlayerBoard = game => {
+  const buildPlayerBoard = (game) => {
     const html = game.board
       .map((line, ind) => {
         const row = line
           .map((cell, jind) => {
             let state;
             switch (cell.state) {
-              case "taken":
-                state = "";
+              case 'taken':
+                state = '';
                 break;
               default:
-                state = [ind, jind].join("");
+                state = [ind, jind].join('');
                 break;
             }
             return `
         <div class= "col ${cell.state} " id = "P${[ind, jind].join(
-              ""
-            )}" > ${state}</div>
+    '',
+  )}" > ${state}</div>
         `;
           })
-          .join("");
+          .join('');
         return `
         <div class= "row" > ${row}</div>
         `;
       })
-      .join("");
+      .join('');
     playerBoard.innerHTML = html;
   };
 
   const changeCell = (div, cell) => {
-    let state = "";
-    let mark;
+    let state = '';
     switch (cell.state) {
-      case "hit":
-        mark = "X";
-        state = "hit";
+      case 'hit':
+        state = 'hit';
         break;
-      case "miss":
-        mark = "||";
-        state = "miss";
+      case 'miss':
+        state = 'miss';
         break;
       default:
-        mark = div.innerHtml;
         break;
     }
     div.classList.add(state);
-    div.innerText = "";
+    div.innerText = '';
   };
 
   const updateBanner = (turn, hits) => {
     if (turn) {
       playerHits.innerText = `${hits} sunked ships`;
-      playerStatus.classList.remove("active");
-      compStatus.classList.add("active");
+      playerStatus.classList.remove('active');
+      compStatus.classList.add('active');
     } else {
       compHits.innerText = `${hits} sunked ships`;
-      playerStatus.classList.add("active");
-      compStatus.classList.remove("active");
-    }
-  };
-
-  const gameMessage = (turn, winner) => {
-    if (turn) {
-      playerHits.innerText = "is the winner";
-      playerStatus.classList.remove("active");
-      compStatus.classList.remove("active");
-      playerStatus.classList.add("winner");
-    } else {
-      compHits.innerText = "is the winner";
-      playerStatus.classList.remove("active");
-      compStatus.classList.remove("active");
-      compStatus.classList.add("winner");
+      playerStatus.classList.add('active');
+      compStatus.classList.remove('active');
     }
   };
 
@@ -133,11 +115,10 @@ const computerBoard = (() => {
     comBoard,
     changeCell,
     updateBanner,
-    gameMessage,
     wrapper,
     playerWin,
     computerWin,
-    worngMoveInd
+    worngMoveInd,
   };
 })();
 export default computerBoard;
