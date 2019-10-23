@@ -19,7 +19,7 @@ describe('testing the creation of players', () => {
   });
 
   it('returns the specific coordinates when the player moves', () => {
-    const cell = { position: '35' };
+    const cell = { pos: '35' };
     const player = Player('jorge', 'human');
     expect(player.play(cell)).toEqual([3, 5]);
   });
