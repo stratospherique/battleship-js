@@ -194,10 +194,19 @@ main {
 
 .invalid {
   position: absolute;
-  width: 10%;
-  top: -20%;
-  left: 45%;
-  background-color: #f0134d;
+  width: 15%;
+  top: -25%;
+  left: 41%;
+  padding: 20px;
+  font-size: 25px;
+  border-radius: 20px;
+  border: 5px solid antiquewhite;
+  background-image: linear-gradient(to right, #f0134d, #90072b);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: antiquewhite;
 }
 
 .hide {

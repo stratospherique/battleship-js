@@ -8,8 +8,8 @@ let compGame = null;
 let playerGame = null;
 const compPlayer = Player("Computer", "bot");
 const player = Player("Clarence", "Human");
-const shipPlayer = [Ship(2), Ship(1), Ship(3), Ship(4)];
-const shipComp = [Ship(2), Ship(1), Ship(3), Ship(4)];
+const shipPlayer = [Ship(5), Ship(4), Ship(3), Ship(2), Ship(1)];
+const shipComp = [Ship(5), Ship(4), Ship(3), Ship(2), Ship(1)];
 let turn;
 let plHits;
 let cpHits;
@@ -77,7 +77,7 @@ window.onclick = e => {
       computerBoard.changeCell(e.target, compGame.board[cord1][cord2]);
       plHits = compGame.sunkedShips();
       computerBoard.updateBanner(turn, plHits);
-      computerBoard.worngMoveInd.classList.value = 'invalid hide';
+      computerBoard.worngMoveInd.classList.value = "invalid hide";
       turn = !turn;
       if (compGame.gameOver()) {
         computerBoard.wrapper.innerHTML = computerBoard.playerWin;
@@ -86,7 +86,7 @@ window.onclick = e => {
       }
       setTimeout(compMove, 1500);
     } else {
-      computerBoard.worngMoveInd.classList.remove('hide');
+      computerBoard.worngMoveInd.classList.remove("hide");
     }
   }
 };

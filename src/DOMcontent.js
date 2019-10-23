@@ -5,7 +5,7 @@ const computerBoard = (() => {
   const playerBoard = document.querySelector(".board__player");
   const playerHits = document.querySelector("#pl-hits");
   const compHits = document.querySelector("#cp-hits");
-  const worngMoveInd = document.querySelector('.invalid');
+  const worngMoveInd = document.querySelector(".invalid");
   const wrapper = document.querySelector(".in-wrapper");
   const playerWin = `
     <div class="playerWin">
@@ -40,7 +40,7 @@ const computerBoard = (() => {
                 break;
             }
             return `
-        <div class="col bot ${cell.state}" id="${[i, j].join("")}">${mark}</div>
+        <div class="col bot ${state}" id="${[i, j].join("")}">${mark}</div>
         `;
           })
           .join("");
