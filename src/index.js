@@ -8,7 +8,8 @@ let compGame = null;
 let playerGame = null;
 const compPlayer = Player("Computer", "bot");
 const player = Player("Clarence", "Human");
-const ships = [Ship(2)];
+const shipPlayer = [Ship(2)];
+const shipComp = [Ship(2)];
 let turn;
 let plHits;
 let cpHits;
@@ -17,11 +18,11 @@ let cpHits;
 const gameStart = () => {
   compPlayer.initMoves();
   player.initMoves();
-  compGame = GameBoard(ships);
+  compGame = GameBoard(shipComp);
   compGame.placeShip();
   computerBoard.buildCompBoard(compGame);
 
-  playerGame = GameBoard(ships);
+  playerGame = GameBoard(shipPlayer);
   playerGame.placeShip();
   computerBoard.buildPlayerBoard(playerGame);
   turn = true;
