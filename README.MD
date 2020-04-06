@@ -29,7 +29,7 @@ HTML | CSS(SASS) | Javascript | Webpack
 
 ## ✨ Live Demo
 
-You can look at it [here](https://rawcdn.githack.com/stratospherique/Restaurant-Page/55d3378c77cde88891db6f6470696973904f0a59/dist/index.html)
+You can look at it [here](https://stratospherique.github.io/battleship-js/)
 
 ## 🚀 Getting Started
 
